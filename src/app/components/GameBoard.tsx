@@ -47,16 +47,21 @@ function GameBoard({ data, connections, setConnections, lastSelected, setLastSel
   }, [data.task]);
 
   const starPositions = useMemo(() => {
-    const padding = 20;
-    return Object.entries(data.task).reduce((acc, [label, pos], index) => {
+  const padding = 20;
+  return Object.entries(data.task).reduce(
+    (acc, [label, pos], index) => {
+      const { x, y } = pos as { x: number; y: number }; 
       const size = stars[index].size;
       const radius = size / 2;
-      const left = Math.min(Math.max(pos.x * scaleX, padding + radius), containerWidth - padding - radius);
-      const top = Math.min(Math.max(pos.y * scaleY, padding + radius), containerHeight - padding - radius);
+      const left = Math.min(Math.max(x * scaleX, padding + radius), containerWidth - padding - radius);
+      const top = Math.min(Math.max(y * scaleY, padding + radius), containerHeight - padding - radius);
       acc[label] = { left, top };
       return acc;
-    }, {} as Record<string, { left: number; top: number }>);
-  }, [data.task, stars, scaleX, scaleY]);
+    },
+    {} as Record<string, { left: number; top: number }>
+  );
+}, [data.task, stars, scaleX, scaleY]);
+
 
   return (
     <div style={{ width: containerWidth, height: containerHeight }} className="relative overflow-hidden bg-transparent">
