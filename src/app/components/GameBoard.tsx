@@ -1,15 +1,16 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
 
-function GameBoard({ data, connections, setConnections }: any) {
-  const containerWidth = 1000;
-  const containerHeight = 600;
+function GameBoard({ data, connections, setConnections, lastSelected, setLastSelected }: any) {
+
+  const containerWidth = 1100;
+  const containerHeight = 500;
   const originalWidth = 1000;
   const originalHeight = 1000;
-  const scaleX = containerWidth / originalWidth;
-  const scaleY = containerHeight / originalHeight;
+  const scaleX = (containerWidth - 50) / originalWidth;
+  const scaleY = (containerHeight)/ originalHeight;
 
-  const [lastSelected, setLastSelected] = useState<string | null>(null);
+
   const [clickedStars, setClickedStars] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -177,7 +178,7 @@ function GameBoard({ data, connections, setConnections }: any) {
                 top: `${size / 2 + 6}px`, // just below star
                 left: "0",
                 transform: "translateX(-50%)",
-                fontSize: "20px",
+                fontSize: "25px",
                 fontWeight: "500",
                 color: color.core,
                 textShadow: `0 0 6px ${color.glow}`,

@@ -6,10 +6,12 @@
   position: fixed;
   pointer-events: none;
   width: 100vw;
-  height: 200vh;
-  z-index: -1;
+  height: 200vh; /* allows scrolling effect */
   background: linear-gradient(#16161d, #1f1f3a, #3b2f4a);
   overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .stars {
@@ -18,6 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  width: 200%;
   animation: twinkle var(--twinkle-duration) ease-in-out infinite;
 }
 
@@ -56,6 +59,14 @@
   animation: comet 10s linear infinite;
 }
 
+.comet-b {
+  animation-delay: -3.3s;
+}
+
+.comet-c {
+  animation-delay: -5s;
+}
+
 @keyframes comet {
   0%,
   40% {
@@ -70,12 +81,4 @@
     transform: translateX(-100vmax);
     opacity: 0;
   }
-}
-
-.comet-b {
-  animation-delay: -3.3s;
-}
-
-.comet-c {
-  animation-delay: -5s;
 }
