@@ -11,6 +11,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-genshin: var(--font-genshin);
+  --font-starlight: var(--var-starlight)
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,5 +24,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-genshin);
+  font-family: var(--font-starlight);
 }

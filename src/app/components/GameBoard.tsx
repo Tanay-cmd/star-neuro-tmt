@@ -140,25 +140,58 @@ function GameBoard({ data, connections, setConnections }: any) {
         return (
           <div
             key={label}
-            onClick={() => handleCircleClick(label)}
-            className="absolute cursor-pointer"
+            className="absolute"
             style={{
-              width: `${size}px`,
-              height: `${size}px`,
               left,
               top,
-              transform: "translate(-50%, -50%)",
-              borderRadius: "50%",
-              background: `radial-gradient(circle, ${color.core} 40%, ${isClicked ? color.glow : color.glowDim} 100%)`,
-              boxShadow: isClicked
-                ? `0 0 15px 5px ${color.glow}, 0 0 30px 10px ${color.glow}`
-                : `0 0 10px 2px ${color.glowDim}, 0 0 20px 5px ${color.glowDim}`,
-              animation: `twinkle ${duration}s infinite alternate`,
-              transition: "background 0.5s ease, box-shadow 0.5s ease",
+              transform: "translate(-50%, -50%)", // wrapper is at star center
             }}
-          />
+          >
+            {/* Star (this is the exact anchor point for connections) */}
+            <div
+              onClick={() => handleCircleClick(label)}
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                borderRadius: "50%",
+                background: `radial-gradient(circle, ${color.core} 40%, ${
+                  isClicked ? color.glow : color.glowDim
+                } 100%)`,
+                boxShadow: isClicked
+                  ? `0 0 15px 5px ${color.glow}, 0 0 30px 10px ${color.glow}`
+                  : `0 0 10px 2px ${color.glowDim}, 0 0 20px 5px ${color.glowDim}`,
+                animation: `twinkle ${duration}s infinite alternate`,
+                transition: "background 0.5s ease, box-shadow 0.5s ease",
+                cursor: "pointer",
+                transform: "translate(-50%, -50%)", // centers star itself
+                position: "absolute", // anchor in wrapper
+                top: "0",
+                left: "0",
+              }}
+            />
+
+            {/* Label (placed below the star without shifting it) */}
+            <span
+              style={{
+                position: "absolute",
+                top: `${size / 2 + 6}px`, // just below star
+                left: "0",
+                transform: "translateX(-50%)",
+                fontSize: "20px",
+                fontWeight: "500",
+                color: color.core,
+                textShadow: `0 0 6px ${color.glow}`,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {label}
+            </span>
+          </div>
         );
       })}
+
+
+
 
       <style jsx>{`
         @keyframes twinkle {

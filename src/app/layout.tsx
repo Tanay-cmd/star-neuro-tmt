@@ -13,6 +13,12 @@ export const genshin = localFont({
 
 });
 
+export const starlight = localFont({
+  src: [{path: "../../public/font/starlight.ttf"}],
+  variable:'--font-starlight'
+
+});
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -30,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${genshin.variable} antialiased`}>
+      <body className={`${genshin.variable} ${starlight.variable} antialiased`}>
        
         {children}
       </body>

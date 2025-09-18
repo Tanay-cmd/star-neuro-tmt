@@ -1,0 +1,122 @@
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.button::after {
+  background-image: conic-gradient(
+    from var(--gradient-angle),
+    hsl(261 100% 65%) 90%,
+    white
+  );
+  animation: borderAnimation 3s linear infinite;
+}
+
+@keyframes borderAnimation {
+  to {
+    --gradient-angle: 360deg;
+  }
+}
+
+.button {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  border-radius: 5rem;
+  border: 1px solid transparent;
+  color: #ffffff;
+  background-color: #323646;
+  box-shadow: 0px 0px 0px 3px #373a4a;
+  cursor: pointer;
+  font-size: 20px;
+  transition-property: box-shadow, color, background, border;
+  transition-duration: 0.4s, 0.3s;
+}
+
+.button::after {
+  content: "";
+  opacity: 0;
+  position: absolute;
+  inset: -0.3rem;
+  border-radius: inherit;
+  z-index: -1;
+  animation-play-state: paused;
+  transition: 0.1s;
+}
+
+.button:hover::after {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.button:hover {
+  color: white;
+  border-color: #8e4dff;
+  background-color: #8447ff;
+  box-shadow: 0px 0px 0px 15px hsl(261 100% 65% / 0.5),
+    0 0 150px 50px hsl(261 100% 65% / 0.2);
+}
+
+/* Star cluster */
+.stars {
+  position: relative;
+  display: block;
+  width: 50px;
+  aspect-ratio: 1/1;
+  filter: brightness(30%);
+  transition: filter 0.3s;
+}
+
+.star {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 50px;
+  aspect-ratio: 1/1;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTEyIDNDMTIgNy45NzA1NiAxNi4wMjk0IDEyIDIxIDEyQzE2LjAyOTQgMTIgMTIgMTYuMDI5NCAxMiAyMUMxMiAxNi4wMjk0IDcuOTcwNTYgMTIgMyAxMkM3Ljk3MDU2IDEyIDEyIDcuOTcwNTYgMTIgM1oiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4=);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.star.__middle {
+  top: 30px;
+  left: -20px;
+  width: 30px;
+}
+
+.star.__small {
+  left: -10px;
+  width: 20px;
+}
+
+.button:hover .stars {
+  filter: none;
+}
+
+.button:hover .star {
+  animation: starShine 2s ease-in infinite alternate;
+}
+
+.button:hover .star.__middle {
+  animation-delay: -1.5s;
+}
+
+.button:hover .star.__small {
+  animation-delay: -2.5s;
+}
+
+@keyframes starShine {
+  from {
+    scale: 1;
+  }
+  50% {
+    scale: 0.7;
+  }
+  to {
+    scale: 1.1;
+  }
+}
