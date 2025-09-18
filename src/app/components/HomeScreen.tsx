@@ -49,6 +49,7 @@ export default function HomeScreen({ onData, onStart }: HomeScreenProps) {
         <li>1. Complete a sequence by clicking or connecting items in the correct order, alternating between letters and numbers as quickly and accurately as possible.</li>
         <li>2. You will see 10 items on screen: A, B, C, D, E, 1, 2, 3, 4, 5.</li>
         <li>3. Your goal is to connect them in this exact sequence: A → 1 → B → 2 → C → 3 → D → 4 → E → 5</li>
+        <li>4. Please use Desktop (mobile phones not recommended) and toggle fullscrenn (F11) for best expierence.</li>
       </ol>
 
       {/* Start button (with loading state) */}
